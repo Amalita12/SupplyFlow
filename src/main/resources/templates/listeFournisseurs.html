@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Liste des Fournisseurs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div class="container">
+    <h2>Nos Fournisseurs</h2>
+    <a href="/fournisseurs/nouveau">+ Ajouter un fournisseur</a>
 
+    <table>
+        <tr>
+            <th>Nom</th><th>Ville</th><th>Téléphone</th><th>Actions</th>
+        </tr>
+        <tr th:each="f : ${fournisseurs}">
+            <td th:text="${f.nom}">Nom</td>
+            <td th:text="${f.ville}">Ville</td>
+            <td th:text="${f.telephone}">000</td>
+            <td>
+                <a th:href="@{/fournisseurs/find/{id}(id=${f.id})}">Détails</a>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

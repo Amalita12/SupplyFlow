@@ -47,6 +47,10 @@ public class FournisseurController {
         return "redirect:/produits";
     }
 
-
+    @GetMapping("/nouveau")
+    public String ajouterFournisseur(Model model) {
+        model.addAttribute("fournisseur", new Fournisseur());
+        return "formFournisseur";
+    }
 
     }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Fournisseur</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Nouveau Fournisseur</h2>
+    <form th:action="@{/fournisseurs/save}" th:object="${fournisseur}" method="post">
+        <label>Nom :</label>
+        <input type="text" th:field="*{nom}" required />
+
+        <label>Ville :</label>
+        <input type="text" th:field="*{ville}" />
+
+        <label>Téléphone :</label>
+        <input type="text" th:field="*{telephone}" />
+
+        <button type="submit">Enregistrer</button>
+        <a href="/fournisseurs">Annuler</a>
+    </form>
+</div>
+</body>
+</html>

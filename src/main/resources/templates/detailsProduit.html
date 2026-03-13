@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails Produit</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h2 th:text="${monProduit.nom}">Nom Produit</h2>
+    <p><strong>Catégorie :</strong> <span th:text="${monProduit.categorie}"></span></p>
+    <p><strong>Prix :</strong> <span th:text="${monProduit.prix}"></span> €</p>
+    <p><strong>Quantité en stock :</strong> <span th:text="${monProduit.quantite}"></span></p>
+
+    <hr>
+
+    <h3>Effectuer un mouvement</h3>
+    <form th:action="@{/mouvement/{id}(id=${monProduit.id})}" method="post">
+        <label>Quantité à ajouter/retirer :</label>
+        <input type="number" name="quantite" required min="1" />
+
+        <label>Type de mouvement :</label>
+        <select name="type">
+            <option value="ENTREE">ENTRÉE (Ajout)</option>
+            <option value="SORTIE">SORTIE (Retrait)</option>
+        </select>
+
+        <button type="submit">Valider</button>
+    </form>
+
+    <div class="actions">
+        <a href="/produits">Retour à la liste</a>
+    </div>
+</div>
+
+</body>
+</html>

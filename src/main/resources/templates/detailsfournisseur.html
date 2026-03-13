@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails Fournisseur</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2 th:text="${FournisseurTrouve.nom}">Nom</h2>
+    <p><strong>Ville :</strong> <span th:text="${FournisseurTrouve.ville}"></span></p>
+    <p><strong>Téléphone :</strong> <span th:text="${FournisseurTrouve.telephone}"></span></p>
+
+    <a href="/fournisseurs">Retour à la liste</a>
+</div>
+</body>
+</html>

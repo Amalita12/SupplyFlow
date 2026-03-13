@@ -1,6 +1,8 @@
 package com.esocial.supplyflow.controllers;
 
+import com.esocial.supplyflow.entities.Fournisseur;
 import com.esocial.supplyflow.entities.Produit;
+import com.esocial.supplyflow.service.FournisseurService;
 import org.springframework.ui.Model;
 import com.esocial.supplyflow.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ public class ProduitController {
 
     @Autowired
     ProduitService produitService;
+
+    @Autowired
+    FournisseurService fournisseurService;
 
     @GetMapping
     public String lister(Model model){
@@ -43,6 +48,22 @@ public class ProduitController {
         }else {
             return "redirect:/produits";
         }
+    }
+
+    @GetMapping("/nouveau")
+    public String ajouterProduit(Model model) {
+        Produit p = new Produit();
+        p.setFournisseur(new Fournisseur());
+        model.addAttribute("produit", new Produit());
+        model.addAttribute("fournisseurs", fournisseurService.listeTousLesFournisseurs());
+        return "formProduit";
+    }
+
+    @GetMapping("/edit")
+    public String edit(@PathVariable Long id, Model model){
+        Produit p = produitService.findById(id);
+        model.addAttribute("produit", p);
+        return "formProduit";
     }
 
 
