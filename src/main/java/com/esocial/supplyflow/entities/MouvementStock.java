@@ -2,7 +2,7 @@ package com.esocial.supplyflow.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 public class MouvementStock {
@@ -15,12 +15,19 @@ public class MouvementStock {
     @Enumerated(EnumType.STRING)
     private TypeMouvement type;
 
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDate date = LocalDate.now();
 
     @ManyToOne
     @JoinColumn(name = "produit_id")
     private Produit produit;
     public MouvementStock(){};
+
+    public MouvementStock(int quantite, TypeMouvement type, LocalDate date, Produit produit) {
+        this.quantite = quantite;
+        this.type = type;
+        this.date = date;
+        this.produit = produit;
+    }
 
     public Long getId() {
         return id;
@@ -46,11 +53,11 @@ public class MouvementStock {
         this.type = type;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
