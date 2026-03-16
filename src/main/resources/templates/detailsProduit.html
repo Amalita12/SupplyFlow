@@ -10,7 +10,7 @@
 <div class="container">
     <h2 th:text="${monProduit.nom}">Nom Produit</h2>
     <p><strong>Catégorie :</strong> <span th:text="${monProduit.categorie}"></span></p>
-    <p><strong>Prix :</strong> <span th:text="${monProduit.prix}"></span> €</p>
+    <p><strong>Prix :</strong> <span th:text="${monProduit.prix}"></span> MAD </p>
     <p><strong>Quantité en stock :</strong> <span th:text="${monProduit.quantite}"></span></p>
 
     <hr>
@@ -22,8 +22,8 @@
 
         <label>Type de mouvement :</label>
         <select name="type">
-            <option value="ENTREE">ENTRÉE (Ajout)</option>
-            <option value="SORTIE">SORTIE (Retrait)</option>
+            <option value="ENTREE">ENTRÉE </option>
+            <option value="SORTIE">SORTIE </option>
         </select>
 
         <button type="submit">Valider</button>

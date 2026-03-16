@@ -6,14 +6,12 @@ import com.esocial.supplyflow.service.FournisseurService;
 import com.esocial.supplyflow.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
+@RequestMapping("/fournisseurs")
 public class FournisseurController {
 
     @Autowired
@@ -24,7 +22,7 @@ public class FournisseurController {
         model.addAttribute("fournisseurs", fournisseurService.listeTousLesFournisseurs() );
         return "listeFournisseurs";
     }
-    @PostMapping
+    @PostMapping("/save")
     public String save (@ModelAttribute Fournisseur f){
         fournisseurService.save(f);
         return "redirect:/fournisseurs";

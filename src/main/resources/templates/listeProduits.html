@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/style.css}">
 <body>
 <h1>Liste des Produits</h1>
 <a href="/produits/nouveau">Ajouter un produit</a>
 <table>
-    <tr>
-        <th>Nom</th><th>Prix</th><th>Quantité</th><th>Actions</th>
-    </tr>
-    <tr th:each="p : ${produits}">
-        <td th:text="${p.nom}">Nom</td>
-        <td th:text="${p.prix}">0.0</td>
-        <td th:text="${p.quantite}">0</td>
-        <td>
-            <a th:href="@{/produits/find/{id}(id=${p.id})}">Détails</a>|
-            <a th:href="@{/produits/edit/{id}(id=${p.id})}">Modifier</a> |
-            <a th:href="@{/produits/delete/{id}(id=${p.id})}">Supprimer</a>
-        </td>
-    </tr>
+  <tr>
+    <th>Nom</th><th>Catégorie</th><th>Prix</th><th>Quantité</th><th>Fournisseur</th><th>Actions</th>
+  </tr>
+  <tr th:each="p : ${produits}">
+    <td th:text="${p.nom}">Nom</td>
+    <td th:text="${p.categorie}">Catégorie</td>
+    <td th:text="${p.prix}">0.0</td>
+    <td th:text="${p.quantite}">0</td>
+    <td th:text="${p.fournisseur != null ? p.fournisseur.nom : 'Aucun'}">Fournisseur</td>
+    <td>
+      <a th:href="@{/produits/find/{id}(id=${p.id})}">Détails</a> |
+      <a th:href="@{/produits/edit/{id}(id=${p.id})}">Modifier</a> |
+      <a th:href="@{/produits/delete/{id}(id=${p.id})}">Supprimer</a>
+    </td>
+  </tr>
 </table>
-<form th:action="@{/produits/save}" th:object="${produit}" method="post">
-    <input type="hidden" th:field="*{id}" />
-
-    <label>Nom :</label>
-    <input type="text" th:field="*{nom}" />
-
-    <label>Prix :</label>
-    <input type="number" th:field="*{prix}" />
-
-    <button type="submit">Enregistrer</button>
-</form>
 </body>
 </html>

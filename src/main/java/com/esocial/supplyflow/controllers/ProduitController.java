@@ -22,6 +22,7 @@ public class ProduitController {
     @GetMapping
     public String lister(Model model){
         model.addAttribute("produits", produitService.listerTousLesProduits());
+        model.addAttribute("produit", new Produit());
         return "listeProduits";
 
     }
@@ -59,11 +60,16 @@ public class ProduitController {
         return "formProduit";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model){
         Produit p = produitService.findById(id);
-        model.addAttribute("produit", p);
-        return "formProduit";
+        if (p != null) {
+            model.addAttribute("produit", p);
+            model.addAttribute("fournisseurs", fournisseurService.listeTousLesFournisseurs());
+            return "formProduit";
+        }else {
+            return "redirect:/produits";
+        }
     }
 
 
